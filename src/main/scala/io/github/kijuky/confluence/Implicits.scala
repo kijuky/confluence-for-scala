@@ -1,7 +1,6 @@
 package io.github.kijuky.confluence
 
 import com.atlassian.confluence.api.model.Expansion
-import com.atlassian.confluence.api.model.Expansion.combine
 import com.atlassian.confluence.api.model.content.id.ContentId
 import com.atlassian.confluence.api.model.content._
 import com.atlassian.confluence.rest.client._
@@ -116,11 +115,11 @@ object Implicits {
 
     /** 編集画面の記事コンテンツ */
     lazy val BODY_STORAGE: Expansion =
-      combine(body, ContentRepresentation.STORAGE.getValue)
+      Expansion.combine(body, ContentRepresentation.STORAGE.getValue)
 
     /** 表示される記事コンテンツ */
     lazy val BODY_VIEW: Expansion =
-      combine(body, ContentRepresentation.VIEW.getValue)
+      Expansion.combine(body, ContentRepresentation.VIEW.getValue)
   }
 
   implicit def expansionToContentRepresentation(

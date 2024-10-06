@@ -4,6 +4,7 @@ lazy val root = project
     name := "confluence-for-scala",
     scalaVersion := "2.12.20",
     crossScalaVersions := Seq(scalaVersion.value, "3.3.4"),
+    console / initialCommands := "import io.github.kijuky.confluence.Implicits._",
     resolvers += "Atlassian" at "https://packages.atlassian.com/mvn/maven-atlassian-external/",
     libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-xml" % "2.3.0",
@@ -19,7 +20,8 @@ lazy val root = project
       ),
       // Runtime で良いが面倒なので加えておく。
       "javax.xml.bind" % "jaxb-api" % "2.3.1",
-      "javax.mail" % "javax.mail-api" % "1.6.2"
+      "javax.mail" % "javax.mail-api" % "1.6.2",
+      "org.slf4j" % "slf4j-simple" % "1.7.36" % Test
     )
   )
 
