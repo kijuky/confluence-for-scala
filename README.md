@@ -6,7 +6,7 @@
 sbt console
 ```
 
-```
+```scala
 import io.github.kijuky.confluence.Implicits._
 val confluence = createConfluenceClient("https://confluence.example.com", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 implicit val c = confluence

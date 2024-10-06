@@ -1,8 +1,8 @@
 package io.github.kijuky.confluence
 
 import com.atlassian.confluence.api.model.Expansion
-import com.atlassian.confluence.api.model.content.id.ContentId
 import com.atlassian.confluence.api.model.content._
+import com.atlassian.confluence.api.model.content.id.ContentId
 import com.atlassian.confluence.rest.client._
 import com.atlassian.confluence.rest.client.authentication.AuthenticatedWebResourceProvider
 import com.sun.jersey.api.client.filter.ClientFilter
