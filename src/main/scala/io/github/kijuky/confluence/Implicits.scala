@@ -8,7 +8,7 @@ import com.atlassian.confluence.rest.client.authentication.AuthenticatedWebResou
 import com.sun.jersey.api.client.filter.ClientFilter
 import com.sun.jersey.api.client.{ClientRequest, ClientResponse}
 
-import java.io.File
+import java.io.{File, InputStream}
 import java.util.concurrent.{ExecutorService, Executors}
 import scala.collection.JavaConverters._
 import scala.language.implicitConversions
@@ -55,8 +55,11 @@ object Implicits {
       new RemoteContentLabelServiceImpl(provider, executor)
 
     /** ローカルに保存されたConfluenceのテンプレートページのXMLファイルを読み出します。 */
-    def templateFromXML(file: File): String =
+    def templateFromFile(file: File): String =
       XML.loadFile(file).child.toString
+
+    def templateFromInputStream(inputStream: InputStream): String =
+      XML.load(inputStream).child.toString
 
     def pageRef(id: Long): Content =
       Content.builder(ContentType.PAGE).id(ContentId.of(id)).build()
