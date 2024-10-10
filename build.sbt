@@ -8,7 +8,7 @@ lazy val root = project
     resolvers += "Atlassian" at "https://packages.atlassian.com/mvn/maven-atlassian-external/",
     libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-xml" % "2.3.0",
-      "com.atlassian.confluence" % "confluence-rest-client" % "8.9.7" exclude (
+      "com.atlassian.confluence" % "confluence-rest-client" % "9.1.0" exclude (
         "com.atlassian.sal",
         "sal-api"
       ),
