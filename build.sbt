@@ -18,7 +18,7 @@ lazy val root = project
       // Runtime で良いが面倒なので加えておく。
       "javax.xml.bind" % "jaxb-api" % "2.3.1",
       "javax.mail" % "javax.mail-api" % "1.6.2",
-      "org.slf4j" % "slf4j-simple" % "1.7.36" % Test
+      "org.slf4j" % "slf4j-simple" % "2.0.16" % Test
     )
   )
 
