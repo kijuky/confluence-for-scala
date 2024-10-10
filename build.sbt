@@ -13,7 +13,7 @@ lazy val root = project
         "sal-api"
       ),
       // atlassian-plugin を解決できないので、jarを直接取得する
-      "com.atlassian.sal" % "sal-api" % "5.2.0" artifacts
+      "com.atlassian.sal" % "sal-api" % "5.2.1" artifacts
         Artifact("sal-api", "jar", "jar"),
       // Runtime で良いが面倒なので加えておく。
       "javax.xml.bind" % "jaxb-api" % "2.3.1",
