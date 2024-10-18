@@ -2,16 +2,14 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "confluence-for-scala",
-    scalaVersion := "2.12.20",
+    scalaVersion := "2.12.20", // scala-steward:off
     crossScalaVersions := Seq(scalaVersion.value, "3.3.4"),
     console / initialCommands := "import io.github.kijuky.confluence.Implicits._",
     resolvers += "Atlassian" at "https://packages.atlassian.com/mvn/maven-atlassian-external/",
     libraryDependencies ++= Seq(
       "org.scala-lang.modules" %% "scala-xml" % "2.3.0",
-      "com.atlassian.confluence" % "confluence-rest-client" % "8.9.7" exclude (
-        "com.atlassian.sal",
-        "sal-api"
-      ),
+      "com.atlassian.confluence" % "confluence-rest-client" % "8.9.7" exclude
+        ("com.atlassian.sal", "sal-api"),
       // atlassian-plugin を解決できないので、jarを直接取得する
       "com.atlassian.sal" % "sal-api" % "5.2.0" artifacts
         Artifact("sal-api", "jar", "jar"),
