@@ -56,10 +56,10 @@ object Implicits {
 
     /** ローカルに保存されたConfluenceのテンプレートページのXMLファイルを読み出します。 */
     def templateFromFile(file: File): String =
-      XML.loadFile(file).child.toString
+      XML.loadFile(file).child.mkString("")
 
     def templateFromInputStream(inputStream: InputStream): String =
-      XML.load(inputStream).child.toString
+      XML.load(inputStream).child.mkString("")
 
     def pageRef(id: Long): Content =
       Content.builder(ContentType.PAGE).id(ContentId.of(id)).build()
