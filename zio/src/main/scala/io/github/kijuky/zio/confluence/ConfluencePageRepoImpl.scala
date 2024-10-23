@@ -89,7 +89,7 @@ private case class ConfluencePageRepoImpl(confluence: Confluence)
           Future(
             confluence.contentLabelService
               .addLabelsCompletionStage(
-                content.getId,
+                result.getId,
                 labels.map(Label.builder(_).build()).asJava
               )
               .toCompletableFuture

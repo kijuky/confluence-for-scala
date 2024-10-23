@@ -11,13 +11,15 @@ final class Confluence(
   val baseUrl: String,
   provider: AuthenticatedWebResourceProvider,
   executorService: ExecutorService
-) {
+) extends AutoCloseable {
   lazy val searchService: RemoteCQLSearchService =
     new RemoteCQLSearchServiceImpl(provider, executorService)
   lazy val contentService: RemoteContentService =
     new RemoteContentServiceImpl(provider, executorService)
   lazy val contentLabelService: RemoteContentLabelService =
     new RemoteContentLabelServiceImpl(provider, executorService)
+  def close(): Unit =
+    executorService.close()
 }
 
 object Confluence {
