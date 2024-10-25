@@ -1,9 +1,9 @@
 ThisBuild / resolvers += "Atlassian" at "https://packages.atlassian.com/mvn/maven-atlassian-external/"
 val confluenceDependencies = Seq(
-  "com.atlassian.confluence" % "confluence-rest-client" % "8.9.7" exclude
+  "com.atlassian.confluence" % "confluence-rest-client" % "9.1.0" exclude
     ("com.atlassian.sal", "sal-api"),
   // atlassian-plugin を解決できないので、jarを直接取得する
-  "com.atlassian.sal" % "sal-api" % "5.2.0" artifacts
+  "com.atlassian.sal" % "sal-api" % "6.0.4" artifacts
     Artifact("sal-api", "jar", "jar"),
   // Runtime で良いが面倒なので加えておく。
   "javax.xml.bind" % "jaxb-api" % "2.3.1",
@@ -23,7 +23,6 @@ lazy val vanilla = project
     scalaVersion := "2.12.20", // scala-steward:off
     crossScalaVersions := Seq(scalaVersion.value, "3.3.4"),
     console / initialCommands := "import io.github.kijuky.confluence.Implicits._",
-    resolvers += "Atlassian" at "https://packages.atlassian.com/mvn/maven-atlassian-external/",
     libraryDependencies ++= confluenceDependencies ++
       Seq("org.scala-lang.modules" %% "scala-xml" % "2.3.0")
   )
