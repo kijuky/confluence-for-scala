@@ -10,15 +10,13 @@ import zio.*
 
 import scala.jdk.CollectionConverters.*
 
-class ConfluencePage(val content: Content, baseUrl: String) {
+class ConfluencePage(val content: Content, baseUrl: String):
   def id: ContentId = content.getId
   def title: String = content.getTitle
   def body: Map[ContentRepresentation, ContentBody] =
     content.getBody.asScala.toMap
   def browseUrl = s"$baseUrl/pages/viewpage.action?pageId=${id.asLong}"
-}
 
-object ConfluencePage {
+object ConfluencePage:
   def applyZIO(content: Content, baseUrl: String): UIO[ConfluencePage] =
-    ZIO.succeed(new ConfluencePage(content, baseUrl))
-}
+    ZIO.succeed(ConfluencePage(content, baseUrl))

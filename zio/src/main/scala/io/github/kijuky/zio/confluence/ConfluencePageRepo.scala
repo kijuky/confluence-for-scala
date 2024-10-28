@@ -3,7 +3,7 @@ package io.github.kijuky.zio.confluence
 import com.atlassian.confluence.api.model.Expansion
 import zio.*
 
-trait ConfluencePageRepo {
+trait ConfluencePageRepo:
   def ref(id: Long): Task[ConfluencePage]
   def fetch(space: String, title: String): Task[Option[ConfluencePage]]
   def fetch(
@@ -18,9 +18,8 @@ trait ConfluencePageRepo {
     parent: Option[ConfluencePage],
     labels: Seq[String]
   ): Task[ConfluencePage]
-}
 
-object ConfluencePageRepo {
+object ConfluencePageRepo:
   def ref(id: Long): RIO[ConfluencePageRepo, ConfluencePage] =
     ZIO.serviceWithZIO(_.ref(id))
   def fetch(
@@ -42,4 +41,3 @@ object ConfluencePageRepo {
     labels: Seq[String]
   ): RIO[ConfluencePageRepo, ConfluencePage] =
     ZIO.serviceWithZIO(_.create(space, title, body, parent, labels))
-}
