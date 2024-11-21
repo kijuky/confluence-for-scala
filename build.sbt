@@ -34,8 +34,8 @@ lazy val zio = project
     scalaVersion := "3.3.4",
     libraryDependencies ++= confluenceDependencies ++
       Seq(
-        "dev.zio" %% "zio" % "2.1.11",
-        "dev.zio" %% "zio-test-sbt" % "2.1.11" % Test
+        "dev.zio" %% "zio" % "2.1.13",
+        "dev.zio" %% "zio-test-sbt" % "2.1.13" % Test
       )
   )
 
