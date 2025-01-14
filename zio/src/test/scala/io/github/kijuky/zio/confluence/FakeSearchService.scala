@@ -20,11 +20,9 @@ case class FakeSearchService(
     PageRequest,
     Seq[Expansion]
   ) => SearchPageResponse[Content] = null,
-  doSearch2: (
-    String,
-    PageRequest,
-    Seq[Expansion]
-  ) => SearchPageResponse[Content] = null,
+  doSearch2: (String, PageRequest, Seq[Expansion]) => SearchPageResponse[
+    Content
+  ] = null,
   doSearch3: (String, Seq[Expansion]) => SearchPageResponse[Content] = null,
   doCountContent: String => Int = null,
   doCountContent2: (String, SearchContext) => Int = null,
