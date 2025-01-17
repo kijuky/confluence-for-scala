@@ -14,12 +14,10 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           actual <- sut.ref(123456)
         yield Chunk(test("参照を返すこと"):
           assertTrue:
-            actual.id.asLong == 123456
-        )
+            actual.id.asLong == 123456)
       .provide(ZLayer:
         for service <- ZIO.succeed(FakeConfluenceService())
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
     suiteAll("fetch(space,title)"):
       suite("searchContentCompletionStageがページを返す場合"):
@@ -29,8 +27,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           Some(page) = actual: @unchecked
         yield Chunk(test("ページを返すこと"):
           assertTrue:
-            page.title == "title"
-        )
+            page.title == "title")
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) =>
@@ -38,8 +35,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
         )
         for service <-
             ZIO.succeed(FakeConfluenceService(searchService = searchService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("searchContentCompletionStageがページを返さない場合"):
         for
@@ -47,16 +43,14 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           actual <- sut.fetch("space", "title")
         yield Chunk(test("ページを返さないこと"):
           assertTrue:
-            actual.isEmpty
-        )
+            actual.isEmpty)
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) => FakeSearchPageResponse(results = Nil)
         )
         for service <-
             ZIO.succeed(FakeConfluenceService(searchService = searchService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("searchContentCompletionStageが異常終了した場合"):
         for
@@ -64,15 +58,13 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           isFailure <- sut.fetch("space", "title").isFailure
         yield Chunk(test("失敗すること"):
           assertTrue:
-            isFailure
-        )
+            isFailure)
       .provide(ZLayer:
         val searchService =
           FakeSearchService(doSearch3 = (_, _) => throw RuntimeException())
         for service <-
             ZIO.succeed(FakeConfluenceService(searchService = searchService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
     suiteAll("fetch(space,title,expansions)"):
       suite("fetchCompletionStageがページを返す場合"):
@@ -86,8 +78,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           Some(page) = actual: @unchecked
         yield Chunk(test("ページを返すこと"):
           assertTrue:
-            page.title == "title"
-        )
+            page.title == "title")
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) => FakeSearchPageResponse(results = Seq(FakeContent()))
@@ -103,8 +94,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
               contentService = contentService
             )
           )
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("fetchCompletionStageがページを返さない場合"):
         for
@@ -116,8 +106,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           )
         yield Chunk(test("ページを返さないこと"):
           assertTrue:
-            actual.isEmpty
-        )
+            actual.isEmpty)
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) => FakeSearchPageResponse(results = Seq(FakeContent()))
@@ -133,8 +122,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
               contentService = contentService
             )
           )
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("fetchCompletionStageが異常終了した場合"):
         for
@@ -144,8 +132,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
             .isFailure
         yield Chunk(test("失敗すること"):
           assertTrue:
-            isFailure
-        )
+            isFailure)
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) => FakeSearchPageResponse(results = Seq(FakeContent()))
@@ -161,8 +148,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
               contentService = contentService
             )
           )
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("searchContentCompletionStageがページを返さない場合"):
         for
@@ -174,16 +160,14 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           )
         yield Chunk(test("ページを返さないこと"):
           assertTrue:
-            actual.isEmpty
-        )
+            actual.isEmpty)
       .provide(ZLayer:
         val searchService = FakeSearchService(doSearch3 =
           (_, _) => FakeSearchPageResponse(results = Nil)
         )
         for service <-
             ZIO.succeed(FakeConfluenceService(searchService = searchService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("searchContentCompletionStageが異常終了した場合"):
         for
@@ -193,15 +177,13 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
             .isFailure
         yield Chunk(test("失敗すること"):
           assertTrue:
-            isFailure
-        )
+            isFailure)
       .provide(ZLayer:
         val searchService =
           FakeSearchService(doSearch3 = (_, _) => throw RuntimeException())
         for service <-
             ZIO.succeed(FakeConfluenceService(searchService = searchService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
     suiteAll("create"):
       suite("createCompletionStageがページを返す場合"):
@@ -210,15 +192,13 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           actual <- sut.create("space", "title", "body", None, Nil)
         yield Chunk(test("ページを返すこと"):
           assertTrue:
-            actual.title == "title"
-        )
+            actual.title == "title")
       .provide(ZLayer:
         val contentService =
           FakeContentService(doCreate = _ => FakeContent(title = "title"))
         for service <-
             ZIO.succeed(FakeConfluenceService(contentService = contentService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("createCompletionStageが異常終了する場合"):
         for
@@ -226,15 +206,13 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           isFailure <- sut.create("space", "title", "body", None, Nil).isFailure
         yield Chunk(test("失敗すること"):
           assertTrue:
-            isFailure
-        )
+            isFailure)
       .provide(ZLayer:
         val contentService =
           FakeContentService(doCreate = _ => throw RuntimeException())
         for service <-
             ZIO.succeed(FakeConfluenceService(contentService = contentService))
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))
 
       suite("ラベルがある場合"):
         for
@@ -242,8 +220,7 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
           actual <- sut.create("space", "title", "body", None, Seq("label"))
         yield Chunk(test("ページを返すこと"):
           assertTrue:
-            actual.title == "title"
-        )
+            actual.title == "title")
       .provide(ZLayer:
         val contentService =
           FakeContentService(doCreate = _ => FakeContent(title = "title"))
@@ -257,5 +234,4 @@ object ConfluencePageRepoImplSpec extends ZIOSpecDefault:
               contentLabelService = contentLabelService
             )
           )
-        yield ConfluencePageRepoImpl(service)
-      )
+        yield ConfluencePageRepoImpl(service))

@@ -27,11 +27,9 @@ case class FakeContentService(
   doRestore: Content => Content = null,
   doPurge: Content => Unit = null,
   doDelete: Content => Unit = null,
-  doGetChildren: (
-    Content,
-    PageRequest,
-    Seq[Expansion]
-  ) => PageResponse[Content] = null,
+  doGetChildren: (Content, PageRequest, Seq[Expansion]) => PageResponse[
+    Content
+  ] = null,
   // RemoteSingleContentFetcher
   doFetchMany: (ContentType, PageRequest) => PageResponse[Content] = null,
   doFetchMappedByContentType: PageRequest => Map[ContentType, PageResponse[
