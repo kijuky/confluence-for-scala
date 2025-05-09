@@ -21,7 +21,7 @@ lazy val vanilla = project
   .settings(
     name := "confluence-for-scala",
     scalaVersion := "2.12.20", // scala-steward:off
-    crossScalaVersions := Seq(scalaVersion.value, "3.3.4"),
+    crossScalaVersions := Seq(scalaVersion.value, "3.3.6"),
     console / initialCommands := "import io.github.kijuky.confluence.Implicits._",
     libraryDependencies ++= confluenceDependencies ++
       Seq("org.scala-lang.modules" %% "scala-xml" % "2.3.0")
@@ -31,7 +31,7 @@ lazy val zio = project
   .in(file("zio"))
   .settings(
     name := "confluence-for-zio",
-    scalaVersion := "3.3.4",
+    scalaVersion := "3.3.6",
     libraryDependencies ++= confluenceDependencies ++
       Seq(
         "dev.zio" %% "zio" % "2.1.11",
