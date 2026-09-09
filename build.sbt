@@ -24,7 +24,7 @@ lazy val vanilla = project
     crossScalaVersions := Seq(scalaVersion.value, "3.3.4"),
     console / initialCommands := "import io.github.kijuky.confluence.Implicits._",
     libraryDependencies ++= confluenceDependencies ++
-      Seq("org.scala-lang.modules" %% "scala-xml" % "2.3.0")
+      Seq("org.scala-lang.modules" %% "scala-xml" % "2.5.0")
   )
 
 lazy val zio = project
